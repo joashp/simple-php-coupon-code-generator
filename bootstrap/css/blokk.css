@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'BLOKKRegular';
+    src: url('../fonts/BLOKKRegular.eot');
+    src: url('../fonts/BLOKKRegular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/BLOKKRegular.woff') format('woff'),
+         url('../fonts/BLOKKRegular.svg#BLOKKRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.blokk {
+	font-family: 'BLOKKRegular';
+}
