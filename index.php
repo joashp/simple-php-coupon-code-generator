@@ -137,43 +137,43 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-		$(document).ready(function(){
-			$('#coupon_form').submit(function() {
-				var no_of_coupons = $('input[name="no_of_coupons"]').val();
-				var length = $('input[name="length"]').val();
-				var prefix = $('input[name="prefix"]').val();
-				var suffix = $('input[name="suffix"]').val();
-				var numbers = $('select[name="numbers"]').val();
-				var letters = $('select[name="letters"]').val();
-				var symbols = $('select[name="symbols"]').val();
-				var random_register = $('select[name="random_register"]').val();
-				var mask = $('input[name="mask"]').val();
+	$(document).ready(function(){
+		$('#coupon_form').submit(function() {
+			var no_of_coupons = $('input[name="no_of_coupons"]').val();
+			var length = $('input[name="length"]').val();
+			var prefix = $('input[name="prefix"]').val();
+			var suffix = $('input[name="suffix"]').val();
+			var numbers = $('select[name="numbers"]').val();
+			var letters = $('select[name="letters"]').val();
+			var symbols = $('select[name="symbols"]').val();
+			var random_register = $('select[name="random_register"]').val();
+			var mask = $('input[name="mask"]').val();
 
-				$('#result').load('index.php', {
-					no_of_coupons: no_of_coupons,
-					length: length,
-					prefix: prefix,
-					suffix: suffix,
-					numbers: numbers,
-					letters: letters,
-					symbols: symbols,
-					random_register: random_register,
-					mask: mask
-				});
-				return false;
+			$('#result').load('index.php', {
+				no_of_coupons: no_of_coupons,
+				length: length,
+				prefix: prefix,
+				suffix: suffix,
+				numbers: numbers,
+				letters: letters,
+				symbols: symbols,
+				random_register: random_register,
+				mask: mask
 			});
+			return false;
 		});
+	});
 
-		function exporttocsv() {
-			if ($('#result').val()) {
-	            var a = document.createElement('a');
-	            with (a) {
-	                href='data:text/csv;base64,' + btoa($('#result').val());
-	                download='csvfile.csv';
-	            }
-	            document.body.appendChild(a);
-	            a.click();
-	            document.body.removeChild(a);
+	function exporttocsv() {
+		if ($('#result').val()) {
+			var a = document.createElement('a');
+			with (a) {
+				href='data:text/csv;base64,' + btoa($('#result').val());
+				download='csvfile.csv';
+			}
+			document.body.appendChild(a);
+			a.click();
+			document.body.removeChild(a);
 	        }
         };
 	</script>
