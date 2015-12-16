@@ -13,7 +13,7 @@
 		$mask = $_POST['mask'] == '' ? false : $_POST['mask'];
 		$coupons = coupon::generate_coupons($no_of_coupons, $length, $prefix, $suffix, $numbers, $letters, $symbols, $random_register, $mask);
 		foreach ($coupons as $key => $value) {
-			echo $value.", ";
+			echo $value."\n ";
 		}
 		die();
 	}
@@ -117,10 +117,15 @@
 					</table>
 					<div class="col-md-offset-8 col-md-4">
 						<button type="submit" class="btn btn-success pull-right">Generate</button>
+						<br/><br/>
 					</div>
 					<hr />
 						<textarea class="form-control" placeholder="Result here" id="result" rows="3" readonly=""></textarea>
 					<hr />
+					<div class="col-md-offset-8 col-md-4">
+						<button type="button" onclick="exporttocsv()" class="btn btn-success pull-right">Export Codes to Excel</button>
+					</div>
+					<br/><br/><br/><br/><br/>
 				</form>
 			</div>
 		</div>
@@ -158,6 +163,19 @@
 				return false;
 			});
 		});
+
+		function exporttocsv() {
+			if ($('#result').val()) {
+	            var a = document.createElement('a');
+	            with (a) {
+	                href='data:text/csv;base64,' + btoa($('#result').val());
+	                download='csvfile.csv';
+	            }
+	            document.body.appendChild(a);
+	            a.click();
+	            document.body.removeChild(a);
+	        }
+        };
 	</script>
 </body>
 </html>
