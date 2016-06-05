@@ -111,8 +111,8 @@ class coupon {
      * @throws Exception
      */
     private function cleanString($string, $options = []) {
-        $toLower = (isset($options['uppercase']) ? filter_var($options['uppercase'], FILTER_VALIDATE_BOOLEAN) : false);
-        $toUpper = (isset($options['lowercase']) ? filter_var($options['lowercase'], FILTER_VALIDATE_BOOLEAN) : false);
+        $toUpper = (isset($options['uppercase']) ? filter_var($options['uppercase'], FILTER_VALIDATE_BOOLEAN) : false);
+        $toLower = (isset($options['lowercase']) ? filter_var($options['lowercase'], FILTER_VALIDATE_BOOLEAN) : false);
 
         $striped = preg_replace('/[^a-zA-Z0-9]/', '', $string);
 
