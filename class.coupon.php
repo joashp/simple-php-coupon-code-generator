@@ -110,7 +110,7 @@ class coupon {
      * @return string
      * @throws Exception
      */
-    private function cleanString($string, $options = []) {
+    static private function cleanString($string, $options = []) {
         $toUpper = (isset($options['uppercase']) ? filter_var($options['uppercase'], FILTER_VALIDATE_BOOLEAN) : false);
         $toLower = (isset($options['lowercase']) ? filter_var($options['lowercase'], FILTER_VALIDATE_BOOLEAN) : false);
 
