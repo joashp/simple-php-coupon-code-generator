@@ -7,6 +7,8 @@
  * @date  2015-06-05
  */
 class coupon {
+    CONST MIN_LENGTH = 8;
+    
     /**
      * MASK FORMAT [XXX-XXX]
      * 'X' this is random symbols
@@ -14,11 +16,11 @@ class coupon {
      *
      * @param array $options
      * @return string
-     * @throws PromotionException
+     * @throws Exception
      */
     static public function generate($options = []) {
 
-        $length         = (isset($options['length']) ? filter_var($options['length'], FILTER_VALIDATE_INT) : 8 );
+        $length         = (isset($options['length']) ? filter_var($options['length'], FILTER_VALIDATE_INT, ['options' => ['default' => self::MIN_LENGTH, 'min_range' => 1]]) : self::MIN_LENGTH );
         $prefix         = (isset($options['prefix']) ? self::cleanString(filter_var($options['prefix'], FILTER_SANITIZE_STRING)) : '' );
         $suffix         = (isset($options['suffix']) ? self::cleanString(filter_var($options['suffix'], FILTER_SANITIZE_STRING)) : '' );
         $useLetters     = (isset($options['letters']) ? filter_var($options['letters'], FILTER_VALIDATE_BOOLEAN) : true );
