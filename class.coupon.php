@@ -1,11 +1,14 @@
 <?php
 /**
  * Class to handle coupon operations
+ * Changes by Alex Rabinovich (@putchi)
  * 
  * @author Joash Pereira
- * @date  2015-11-06
+ * @date  2015-06-05
  */
 class coupon {
+    CONST MIN_LENGTH = 8;
+    
     /**
      * MASK FORMAT [XXX-XXX]
      * 'X' this is random symbols
@@ -17,7 +20,7 @@ class coupon {
      */
     static public function generate($options = []) {
 
-        $length         = (isset($options['length']) ? filter_var($options['length'], FILTER_VALIDATE_INT) : 8 );
+        $length         = (isset($options['length']) ? filter_var($options['length'], FILTER_VALIDATE_INT, ['options' => ['default' => self::MIN_LENGTH, 'min_range' => 1]]) : self::MIN_LENGTH );
         $prefix         = (isset($options['prefix']) ? self::cleanString(filter_var($options['prefix'], FILTER_SANITIZE_STRING)) : '' );
         $suffix         = (isset($options['suffix']) ? self::cleanString(filter_var($options['suffix'], FILTER_SANITIZE_STRING)) : '' );
         $useLetters     = (isset($options['letters']) ? filter_var($options['letters'], FILTER_VALIDATE_BOOLEAN) : true );
@@ -107,11 +110,11 @@ class coupon {
      * @return string
      * @throws Exception
      */
-    private function cleanString($string, $options = []) {
-        $toLower = (isset($options['uppercase']) ? filter_var($options['uppercase'], FILTER_VALIDATE_BOOLEAN) : false);
-        $toUpper = (isset($options['lowercase']) ? filter_var($options['lowercase'], FILTER_VALIDATE_BOOLEAN) : false);
+    static private function cleanString($string, $options = []) {
+        $toUpper = (isset($options['uppercase']) ? filter_var($options['uppercase'], FILTER_VALIDATE_BOOLEAN) : false);
+        $toLower = (isset($options['lowercase']) ? filter_var($options['lowercase'], FILTER_VALIDATE_BOOLEAN) : false);
 
-        $striped = preg_replace('/[^a-zA-Z0-9]/', '', $string);
+        $striped = preg_replace('/[^a-zA-Z0-9]/', '', trim($string));
 
         // make uppercase
         if ($toLower && $toUpper) {
