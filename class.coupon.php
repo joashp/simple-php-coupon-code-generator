@@ -1,7 +1,7 @@
 <?php
 /**
  * Class to handle coupon operations
- * Changes by Alex Rabinovich
+ * Changes by Alex Rabinovich (@putchi)
  * 
  * @author Joash Pereira
  * @date  2015-06-05
@@ -114,7 +114,7 @@ class coupon {
         $toUpper = (isset($options['uppercase']) ? filter_var($options['uppercase'], FILTER_VALIDATE_BOOLEAN) : false);
         $toLower = (isset($options['lowercase']) ? filter_var($options['lowercase'], FILTER_VALIDATE_BOOLEAN) : false);
 
-        $striped = preg_replace('/[^a-zA-Z0-9]/', '', $string);
+        $striped = preg_replace('/[^a-zA-Z0-9]/', '', trim($string));
 
         // make uppercase
         if ($toLower && $toUpper) {
