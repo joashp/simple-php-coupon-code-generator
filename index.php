@@ -2,16 +2,7 @@
 	
 	if (isset($_POST['length'])) {
 		include 'class.coupon.php';
-		$no_of_coupons = $_POST['no_of_coupons'];
-		$length = $_POST['length'];
-		$prefix = $_POST['prefix'];
-		$suffix = $_POST['suffix'];
-		$numbers = $_POST['numbers'];
-		$letters = $_POST['letters'];
-		$symbols = $_POST['symbols'];
-		$random_register = $_POST['random_register'] == 'false' ? false : true;
-		$mask = $_POST['mask'] == '' ? false : $_POST['mask'];
-		$coupons = coupon::generate_coupons($no_of_coupons, $length, $prefix, $suffix, $numbers, $letters, $symbols, $random_register, $mask);
+		$coupons = coupon::generate_coupons($_POST['no_of_coupons'], $_POST);
 		foreach ($coupons as $key => $value) {
 			echo $value."\n ";
 		}
