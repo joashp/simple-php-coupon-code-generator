@@ -19,6 +19,16 @@ class coupon {
      * @throws Exception
      */
     static public function generate($options = []) {
+        
+        // to accept options as function arguments like on README
+        if (!is_array($options) && func_num_args() > 0) {
+            $keys = ['length', 'prefix', 'suffix', 'letters', 'numbers', 'symbols', 'mixed_case', 'mask'];
+            $opt = [];
+            foreach (func_get_args() as $key => $value) {
+                $opt[ $keys[ $key ] ] = $value;
+            }
+            $options = $opt;
+        }
 
         $length         = (isset($options['length']) ? filter_var($options['length'], FILTER_VALIDATE_INT, ['options' => ['default' => self::MIN_LENGTH, 'min_range' => 1]]) : self::MIN_LENGTH );
         $prefix         = (isset($options['prefix']) ? self::cleanString(filter_var($options['prefix'], FILTER_SANITIZE_STRING)) : '' );
